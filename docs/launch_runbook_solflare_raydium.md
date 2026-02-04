@@ -41,6 +41,7 @@ You will need these identifiers for verification and for the dashboard:
 - Add-liquidity txid
 - LP burn txid (if you burn LP)
 - Any community pool/treasury token account address and funding txid(s)
+- (Optional but recommended) Solscan links you can publicly share later (mint/pool/tx)
 
 ---
 

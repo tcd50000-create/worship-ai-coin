@@ -10,7 +10,8 @@ This project is intentionally **satirical**. The goal of these guardrails is to 
   - Never say (or imply) “guaranteed”, “profits”, “yield”, “APY”, “risk‑free”, “moon”, “price target”, or “we will pump”.
 - **No wallet addresses in docs or UI.**
   - Do not hardcode team wallets, treasury wallets, or any payment address.
-  - If an address must be shared for operational reasons, share it **out-of-band** (human-to-human), and treat it as ephemeral.
+  - The dashboard may show only *non-custodial identifiers* (mint / pool / tx ids) and link to Solscan.
+  - If a wallet address must be shared for operational reasons, share it **out-of-band** (human-to-human), and treat it as ephemeral.
 - **Never request seed phrases or private keys.**
   - If anyone asks to “verify” by sending keys/seed, it is a scam.
 - **No on‑chain actions without human signing.**

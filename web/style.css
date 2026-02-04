@@ -12,6 +12,14 @@ h1{margin:0;font-size:42px;letter-spacing:.5px}
 dl{margin:0;display:grid;grid-template-columns:120px 1fr;gap:8px 10px;align-items:center}
 dt{color:var(--muted);font-size:13px}
 dd{margin:0;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:13px;word-break:break-all}
+
+dd a{color:#b8a7ff;text-decoration:none}
+dd a:hover{text-decoration:underline}
+
+/* Status styling: missing fields show a subtle badge-like tone */
+.is-missing{color:#ffb4b4}
+.is-ok{color:var(--text)}
+
 .muted{color:var(--muted)}
 .note{margin:10px 0 0;color:var(--muted);font-size:12px}
 .foot{margin-top:18px;color:var(--muted);font-size:12px}

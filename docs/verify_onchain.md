@@ -82,6 +82,7 @@ When you do share proofs publicly, keep it simple and link-only:
 
 - Mint (Solscan link)
 - Pool (Solscan link)
+- Create-mint tx (Solscan link)
 - Liquidity add tx (Solscan link)
 - LP burn tx (Solscan link), only if confidently verified
 

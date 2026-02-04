@@ -12,6 +12,10 @@
       "name": null,
       "pool_address": null
     },
+    "tx": {
+      "create_mint_tx": null,
+      "add_liquidity_tx": null
+    },
     "lp": {
       "lp_mint": null,
       "burn_address": null,
