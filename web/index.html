@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WORSHIPAI — dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <h1>WORSHIPAI</h1>
+      <p class="sub">A tiny public dashboard: supply, AMM, LP burn, distribution.</p>
+      <p class="meta">Data source: <code>web/data.json</code> (update after launch)</p>
+    </header>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Token</h2>
+        <dl>
+          <dt>Name</dt><dd id="t_name">—</dd>
+          <dt>Symbol</dt><dd id="t_symbol">—</dd>
+          <dt>Decimals</dt><dd id="t_decimals">—</dd>
+          <dt>Total supply</dt><dd><span id="t_supply">—</span> <span class="muted">tokens</span></dd>
+        </dl>
+      </div>
+
+      <div class="card">
+        <h2>On-chain identifiers</h2>
+        <dl>
+          <dt>Mint</dt><dd id="c_mint">—</dd>
+          <dt>AMM</dt><dd id="c_amm">—</dd>
+          <dt>Pool</dt><dd id="c_pool">—</dd>
+        </dl>
+      </div>
+
+      <div class="card">
+        <h2>LP burn / lock</h2>
+        <dl>
+          <dt>LP mint</dt><dd id="lp_mint">—</dd>
+          <dt>Burn address</dt><dd id="lp_burn_addr">—</dd>
+          <dt>Burn tx</dt><dd id="lp_burn_tx">—</dd>
+        </dl>
+      </div>
+
+      <div class="card">
+        <h2>Distribution snapshot</h2>
+        <dl>
+          <dt>Liquidity (80%)</dt><dd id="d_liq">—</dd>
+          <dt>Community pool (20%)</dt><dd id="d_pool">—</dd>
+          <dt>Retained (5%)</dt><dd id="d_ret">—</dd>
+        </dl>
+        <p class="note">Values are tokens (human units), not base units.</p>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <p>Disclaimer: satire + engineering. Not financial advice. No presale.</p>
+      <p class="muted" id="updated">Updated: —</p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

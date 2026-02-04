@@ -16,6 +16,7 @@
 ## Verification checklist
 - Mint address
 - Total supply + decimals
-- LP burn / lock evidence
+- LP burn / lock evidence (burn address + tx)
 - Pool address
 - Community pool wallet address (public) + balance
+- Update `web/data.json` so the dashboard reflects on-chain reality

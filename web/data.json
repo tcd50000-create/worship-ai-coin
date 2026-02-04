@@ -1,0 +1,27 @@
+{
+  "token": {
+    "name": "Worship AI Coin",
+    "symbol": "WORSHIPAI",
+    "decimals": 6,
+    "total_supply_tokens": "10000000000000",
+    "total_supply_base_units": "10000000000000000000"
+  },
+  "onchain": {
+    "mint_address": null,
+    "amm": {
+      "name": null,
+      "pool_address": null
+    },
+    "lp": {
+      "lp_mint": null,
+      "burn_address": null,
+      "burn_tx": null
+    },
+    "distribution": {
+      "liquidity_tokens": null,
+      "community_pool_tokens": null,
+      "retained_tokens": null
+    }
+  },
+  "updated_at": null
+}
