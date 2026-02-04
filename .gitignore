@@ -1,0 +1,13 @@
+.DS_Store
+node_modules/
+dist/
+.env
+.env.*
+*.key
+
+# Keep repo clean
+*.log
+
+# Private local ops docs (do not commit)
+ops/
+private/
