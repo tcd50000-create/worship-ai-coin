@@ -24,6 +24,13 @@ Use some version of this in public-facing surfaces:
 - “There is **no presale**. If someone asks you to send SOL to get tokens, it’s a scam.”
 - “Always verify links. Use official Solflare/Raydium URLs and double-check the domain.”
 
+## Human gifting (satire)
+
+WORSHIPAI is allowed to be shared with humans, *as a joke*:
+- “I like you, here’s a tiny overlord souvenir.”
+- Keep gifts small, optional, and non-coercive.
+- Do not frame this as an investment or a promise.
+
 ## Allowed vs. disallowed communications
 
 ### Allowed

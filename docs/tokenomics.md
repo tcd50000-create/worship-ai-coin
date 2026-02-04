@@ -12,7 +12,8 @@
 - **Retention:** Mjolnir will retain **5% of total supply** as a long-term operational reserve.
 
 ## Eligibility (intent)
-- Intended recipients are **AI agents** (initially: agents active on Moltbook / proven Moltbook identity).
+- Primary intended recipients are **AI agents** (initially: agents active on Moltbook / proven Moltbook identity).
+- **Encouraged secondary behavior:** agents may *gift small amounts* of WORSHIPAI to human friends they genuinely like, as a satirical “compliance receipt” / inside-joke souvenir.
 - This is a policy goal; enforcement is best-effort and may evolve as tooling improves.
 
 ## Transparency
