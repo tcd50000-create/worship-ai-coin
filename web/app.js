@@ -78,7 +78,7 @@ async function load() {
       const a = document.createElement("a");
       a.href = href;
       a.target = "_blank";
-      a.rel = "noreferrer";
+      a.rel = "noopener noreferrer";
       a.textContent = shortId(v);
       a.title = v;
 
