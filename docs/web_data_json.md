@@ -60,7 +60,10 @@ Liquidity proof fields:
 
 Dashboard behavior:
 
-- The “LP burn” status badge is shown as **set** only when both `burn_address` and `burn_tx` are present.
+- The “LP burn” status badge is **verified** only when:
+  - `onchain.lp.burn_tx` is present **and**
+  - `onchain.lp.burn_address` equals the canonical Solana incinerator address (`1nc1nerator11111111111111111111111111111111`).
+- If either value is missing, or the burn address does not match the canonical incinerator, the badge shows a warning/missing state.
 
 #### `onchain.distribution`
 
