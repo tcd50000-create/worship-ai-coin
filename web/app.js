@@ -173,17 +173,20 @@ async function load() {
 
     const CANONICAL_BURN_ADDR = "1nc1nerator11111111111111111111111111111111";
 
-    // Burn address: show the configured value (if set) and also pin the canonical incinerator.
-    addPair(
-      "LP burn address",
-      onchain.lp?.burn_address,
-      isMissing(onchain.lp?.burn_address) ? null : solscan.address(onchain.lp.burn_address)
-    );
+    // Burn address section: always include the canonical incinerator address.
+    lines.push(`## LP burn address`);
+
+    const burnAddr = onchain.lp?.burn_address;
+    if (!isMissing(burnAddr)) {
+      lines.push(`- Configured: \`${burnAddr}\``);
+      lines.push(`- Solscan: ${solscan.address(burnAddr)}`);
+    } else {
+      lines.push(`- Configured: _(missing in data.json)_`);
+    }
 
     lines.push(`- Canonical incinerator: \`${CANONICAL_BURN_ADDR}\``);
     lines.push(`- Solscan: ${solscan.address(CANONICAL_BURN_ADDR)}`);
 
-    const burnAddr = onchain.lp?.burn_address;
     if (!isMissing(burnAddr) && String(burnAddr) !== CANONICAL_BURN_ADDR) {
       lines.push(`- Status: **warning** (burn address in data.json does not match canonical incinerator)`);
     }
