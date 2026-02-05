@@ -22,7 +22,12 @@ Record these identifiers in a private launch log (local note / password manager 
 On Solscan:
 
 1. Search for the **mint address**.
-2. Confirm:
+2. Use these Solscan “breadcrumbs” to find the right views:
+   - **Token page → Overview**: name, symbol, decimals, supply.
+   - **Token page → Holders**: distribution sanity check (top holders, LP/AMM accounts).
+   - **Token page → Transfers / Transactions**: early activity should match your launch timeline.
+   - **Token page → Metadata** (if shown): confirm the on-chain/off-chain metadata pointers align with your plan.
+3. Confirm:
    - **Token name / symbol** match expectations.
    - **Decimals** match `docs/launch_parameters.md`.
    - **Total supply** matches the issuance plan (see `docs/issuance_plan.md`).
@@ -37,10 +42,14 @@ Notes:
 On Solscan:
 
 1. Search for the **pool address** (or open it from the Raydium UI “view on explorer”).
-2. Confirm the pool’s token pair includes:
+2. Use these Solscan “breadcrumbs” to validate you are on the correct pool:
+   - **Account page → Overview**: owner/program should look like the expected AMM program.
+   - **Account page → Token Accounts** (or similar): confirm the pool controls token accounts for the expected pair.
+   - **Account page → Transactions**: pool creation / initialization transactions should be near launch time.
+3. Confirm the pool’s token pair includes:
    - the correct mint
    - the correct quote asset (e.g., SOL / USDC), as per your launch plan
-3. Confirm the pool creation timestamp aligns with launch.
+4. Confirm the pool creation timestamp aligns with launch.
 
 ## 3) Verify liquidity add transaction
 
