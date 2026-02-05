@@ -2,6 +2,11 @@
 
 This page is a quick “proof bundle” for WORSHIPAI.
 
+Canonical source of truth (for the dashboard) is `web/data.json`. This document should mirror the same identifiers.
+
+- Dashboard: `web/index.html` → “Proof bundle (Solscan)” section (includes copy-to-clipboard)
+- Data reference: `docs/web_data_json.md`
+
 ## Solscan breadcrumbs (how to verify)
 
 If you want to independently verify the launch artifacts on Solscan:
@@ -16,6 +21,13 @@ If you want to independently verify the launch artifacts on Solscan:
    - `1nc1nerator11111111111111111111111111111111`
 
 These links are intentionally direct. Always double-check the domain is `solscan.io`.
+
+## How to update this bundle (after launch)
+
+1. Update `web/data.json` with final mint/pool/tx identifiers.
+2. Verify each identifier on Solscan.
+3. Update this file so it matches `web/data.json` (copy/paste is fine).
+4. Sanity-check the dashboard proof table renders the same links.
 
 ## Token mint
 - Mint: `3QUF45EHzx52QqhZGjm9nt61GFpFi1JMBm7RCqfNTfgK`
