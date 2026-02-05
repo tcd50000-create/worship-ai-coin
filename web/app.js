@@ -2,9 +2,29 @@ async function load() {
   const el = (id) => document.getElementById(id);
 
   const isMissing = (v) => v == null || v === "";
-  const asString = (v) => (isMissing(v) ? null : String(v));
 
   const fmt = (v) => (isMissing(v) ? "—" : String(v));
+
+  const copyText = async (text) => {
+    const v = String(text);
+    // Prefer async Clipboard API.
+    if (navigator?.clipboard?.writeText) {
+      await navigator.clipboard.writeText(v);
+      return;
+    }
+
+    // Fallback for older browsers: temporary textarea.
+    const ta = document.createElement("textarea");
+    ta.value = v;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.top = "-9999px";
+    ta.style.left = "-9999px";
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+  };
 
   // Token quantities are expected to be string integers to avoid JSON number precision loss.
   const fmtTokens = (v) => {
@@ -33,10 +53,48 @@ async function load() {
     const v = String(value);
     node.classList.add("is-ok");
 
-    // Render Solscan link for known identifiers.
+    // Render Solscan link + copy button for known identifiers.
     if (kind && (kind === "token" || kind === "address" || kind === "tx")) {
       const href = solscan[kind](v);
-      node.innerHTML = `<a href="${href}" target="_blank" rel="noreferrer">${v}</a>`;
+
+      node.textContent = "";
+
+      const a = document.createElement("a");
+      a.href = href;
+      a.target = "_blank";
+      a.rel = "noreferrer";
+      a.textContent = v;
+
+      const spacer = document.createTextNode(" ");
+
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "copy-btn";
+      btn.textContent = "Copy";
+      btn.title = "Copy to clipboard";
+      btn.addEventListener("click", async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        try {
+          await copyText(v);
+          btn.textContent = "Copied";
+          btn.classList.add("copied");
+          setTimeout(() => {
+            btn.textContent = "Copy";
+            btn.classList.remove("copied");
+          }, 1200);
+        } catch (err) {
+          console.error(err);
+          btn.textContent = "Failed";
+          setTimeout(() => {
+            btn.textContent = "Copy";
+          }, 1200);
+        }
+      });
+
+      node.appendChild(a);
+      node.appendChild(spacer);
+      node.appendChild(btn);
       return;
     }
 

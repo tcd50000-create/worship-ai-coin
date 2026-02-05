@@ -16,6 +16,10 @@ dd{margin:0;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monosp
 dd a{color:#b8a7ff;text-decoration:none}
 dd a:hover{text-decoration:underline}
 
+.copy-btn{margin-left:6px;padding:2px 8px;border-radius:999px;border:1px solid var(--border);background:#0f1522;color:var(--muted);font-size:12px;line-height:1.4;cursor:pointer}
+.copy-btn:hover{color:var(--text);border-color:#33455f}
+.copy-btn.copied{color:#b8ffcc;border-color:#2e6b44}
+
 /* Status styling: missing fields show a subtle badge-like tone */
 .is-missing{color:#ffb4b4}
 .is-ok{color:var(--text)}
@@ -31,3 +35,5 @@ code{background:#0f1522;border:1px solid var(--border);padding:2px 6px;border-ra
 .proof-table td{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:13px;word-break:break-all}
 .proof-table a{color:#b8a7ff;text-decoration:none}
 .proof-table a:hover{text-decoration:underline}
+
+.proof-table .copy-btn{margin-left:8px}
