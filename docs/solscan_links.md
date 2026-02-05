@@ -16,7 +16,10 @@ If you want to independently verify the launch artifacts on Solscan:
 3. Use the **Key transactions** links to review:
    - **Create mint tx** (should include mint creation + initial minting actions).
    - **Add liquidity tx** (should include Raydium/AMM instructions and expected amounts).
-4. Open the **Raydium pool** account link and confirm it matches what Raydium shows for the WORSHIPAI pair.
+4. Open the **Raydium pool** account link and confirm:
+   - it is an **Account** page (not a Token page)
+   - the pool’s token accounts reference the WORSHIPAI mint and the intended quote asset mint
+   - the pool address matches what Raydium shows for the WORSHIPAI pair (AMM ID / Pool ID)
 5. Open the **LP burn tx** and confirm the LP tokens were sent to the Solana incinerator address:
    - `1nc1nerator11111111111111111111111111111111`
 

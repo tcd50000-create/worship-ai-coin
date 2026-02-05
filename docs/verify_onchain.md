@@ -63,9 +63,14 @@ On Solscan:
    - **Account page → Overview**: should show an **Owner / Program** (some Raydium/AMM program).
    - **Account page → Token Accounts** (or similar): the pool should control token accounts for the pair.
    - **Account page → Transactions**: initialization activity should be near launch time.
-3. Confirm the pair is correct by checking the pool’s token accounts include:
+3. Confirm the pair is correct by checking the pool’s token accounts include **exactly two primary mints**:
    - the WORSHIPAI mint (base)
-   - the intended quote asset (e.g., wSOL / USDC), per `docs/launch_parameters.md`
+   - the intended quote asset (e.g., wSOL / USDC)
+
+   On Solscan, this usually means:
+   - the pool account lists token accounts with **Mint** fields
+   - clicking each mint takes you to the expected token pages (WORSHIPAI + the quote asset)
+
 4. Cross-check via Raydium UI:
    - Open the WORSHIPAI pair on Raydium.
    - Find the “AMM ID / Pool ID” shown by Raydium for that pair.
