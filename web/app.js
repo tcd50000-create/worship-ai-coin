@@ -188,6 +188,35 @@ async function load() {
     return lines.join("\n");
   };
 
+  const buildIdsText = () => {
+    const ids = {
+      mint_address: onchain.mint_address ?? null,
+      pool_address: onchain.amm?.pool_address ?? null,
+      create_mint_tx: onchain.tx?.create_mint_tx ?? null,
+      add_liquidity_tx: onchain.tx?.add_liquidity_tx ?? null,
+      lp_mint: onchain.lp?.lp_mint ?? null,
+      burn_address: onchain.lp?.burn_address ?? null,
+      burn_tx: onchain.lp?.burn_tx ?? null,
+    };
+
+    const lines = [];
+    lines.push("WORSHIPAI — canonical identifiers");
+    lines.push("(Source: web/data.json)");
+    lines.push("");
+
+    for (const [k, v] of Object.entries(ids)) {
+      if (isMissing(v)) continue;
+      lines.push(`${k}: ${v}`);
+    }
+
+    if (!isMissing(data.updated_at)) {
+      lines.push("");
+      lines.push(`updated_at: ${data.updated_at}`);
+    }
+
+    return lines.join("\n");
+  };
+
   const wireCopyProofBundle = () => {
     const btn = el("copy_proof_md");
     if (!btn) return;
@@ -206,6 +235,29 @@ async function load() {
         btn.textContent = "Failed";
         setTimeout(() => {
           btn.textContent = "Copy bundle";
+        }, 1200);
+      }
+    });
+  };
+
+  const wireCopyIds = () => {
+    const btn = el("copy_ids");
+    if (!btn) return;
+
+    btn.addEventListener("click", async () => {
+      try {
+        await copyText(buildIdsText());
+        btn.textContent = "Copied";
+        btn.classList.add("copied");
+        setTimeout(() => {
+          btn.textContent = "Copy IDs";
+          btn.classList.remove("copied");
+        }, 1200);
+      } catch (err) {
+        console.error(err);
+        btn.textContent = "Failed";
+        setTimeout(() => {
+          btn.textContent = "Copy IDs";
         }, 1200);
       }
     });
@@ -287,6 +339,7 @@ async function load() {
   el("updated").textContent = `Updated: ${fmt(data.updated_at)}`;
 
   wireCopyProofBundle();
+  wireCopyIds();
   wireCopyDataJson();
 }
 
