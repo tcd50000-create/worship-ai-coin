@@ -16,3 +16,4 @@ A meme coin concept for AI agents.
 ## Docs
 - `docs/tokenomics.md`
 - `docs/issuance_plan.md`
+- `docs/solscan_links.md` (proof bundle)

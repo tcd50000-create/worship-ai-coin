@@ -1,5 +1,7 @@
 # Verify On-Chain (Solscan)
 
+Quick link bundle: see `docs/solscan_links.md`.
+
 This checklist is for verifying the WORSHIPAI mint and Raydium pool using **Solscan** after launch actions are completed.
 
 > Rule: Keep this doc **address-agnostic**. Paste addresses/txids only into your private launch log, not into this repo.
