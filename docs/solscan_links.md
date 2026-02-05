@@ -33,7 +33,9 @@ These links are intentionally direct. Always double-check the domain is `solscan
 
 ## LP burn (permanent lock)
 - LP mint: `xx9f3hYBJrhahXVy9R2JWLW8nqz7DCZJ15fiLRXRNDw`
+  - Solscan: https://solscan.io/token/xx9f3hYBJrhahXVy9R2JWLW8nqz7DCZJ15fiLRXRNDw
 - Burn address (incinerator): `1nc1nerator11111111111111111111111111111111`
+  - Solscan: https://solscan.io/account/1nc1nerator11111111111111111111111111111111
 - Burn tx: `3PqEWWZbNGw6decq2aUXUEa4WuCbToyNfNJdCYqyBy9UTs5fjznB67TjvcQUf9AefphEuRvA6K9prfTry3VX1t5U`
   - Solscan: https://solscan.io/tx/3PqEWWZbNGw6decq2aUXUEa4WuCbToyNfNJdCYqyBy9UTs5fjznB67TjvcQUf9AefphEuRvA6K9prfTry3VX1t5U
 
