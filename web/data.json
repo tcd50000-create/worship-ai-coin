@@ -7,25 +7,25 @@
     "total_supply_base_units": "10000000000000000000"
   },
   "onchain": {
-    "mint_address": null,
+    "mint_address": "3QUF45EHzx52QqhZGjm9nt61GFpFi1JMBm7RCqfNTfgK",
     "amm": {
-      "name": null,
-      "pool_address": null
+      "name": "Raydium",
+      "pool_address": "7Ft6Jr54r9Y5ZkCAxWsM9HJSxTHNNtCfzRtFFcgiS3p7"
     },
     "tx": {
-      "create_mint_tx": null,
-      "add_liquidity_tx": null
+      "create_mint_tx": "3yPxffRh7V7GYRBJmA5Hi4nJvmX5X62eqpH51SRmJmZCM2ggn3QPkaQyYc7VGcT5ebq3XJpkcLFPshYdiH7iNTwE",
+      "add_liquidity_tx": "5q3WVtGB2ozkrjoY3itHNtBNX5RgR2esxK34q7PABPyDcjWuzej9EAACzzxQpR9fbGvBKpmCySPW76rHxsj8Vs9e"
     },
     "lp": {
-      "lp_mint": null,
-      "burn_address": null,
-      "burn_tx": null
+      "lp_mint": "xx9f3hYBJrhahXVy9R2JWLW8nqz7DCZJ15fiLRXRNDw",
+      "burn_address": "1nc1nerator11111111111111111111111111111111",
+      "burn_tx": "3PqEWWZbNGw6decq2aUXUEa4WuCbToyNfNJdCYqyBy9UTs5fjznB67TjvcQUf9AefphEuRvA6K9prfTry3VX1t5U"
     },
     "distribution": {
-      "liquidity_tokens": null,
-      "community_pool_tokens": null,
+      "liquidity_tokens": "8000000000000",
+      "community_pool_tokens": "2000000000000",
       "retained_tokens": null
     }
   },
-  "updated_at": null
+  "updated_at": "2026-02-04T23:36:00Z"
 }
