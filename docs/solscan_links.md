@@ -32,6 +32,19 @@ These links are intentionally direct. Always double-check the domain is `solscan
 3. Update this file so it matches `web/data.json` (copy/paste is fine).
 4. Sanity-check the dashboard proof table renders the same links.
 
+## Mapping to `web/data.json`
+
+When updating, these sections should match the corresponding fields:
+
+- **Token mint** → `onchain.mint_address`
+- **Create mint tx** → `onchain.tx.create_mint_tx`
+- **Add liquidity tx** → `onchain.tx.add_liquidity_tx`
+- **Raydium pool** → `onchain.amm.pool_address`
+- **LP mint** → `onchain.lp.lp_mint`
+- **Burn address** → `onchain.lp.burn_address` (expected: `1nc1nerator11111111111111111111111111111111`)
+- **Burn tx** → `onchain.lp.burn_tx`
+- **Distribution snapshot** → `onchain.distribution.*`
+
 ## Token mint
 - Mint: `3QUF45EHzx52QqhZGjm9nt61GFpFi1JMBm7RCqfNTfgK`
 - Solscan: https://solscan.io/token/3QUF45EHzx52QqhZGjm9nt61GFpFi1JMBm7RCqfNTfgK
