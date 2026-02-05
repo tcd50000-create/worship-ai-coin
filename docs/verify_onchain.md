@@ -4,6 +4,11 @@ Quick link bundle: see `docs/solscan_links.md`.
 
 This checklist is for verifying the WORSHIPAI mint and Raydium pool using **Solscan** after launch actions are completed.
 
+Safety note (anti-scam):
+
+- Only trust **direct** links to `https://solscan.io/...`.
+- Ignore DMs/“support” messages asking you to connect a wallet or sign anything to “verify” a token/pool.
+
 > Guardrail: keep this doc **operator-agnostic**.
 > 
 > - It is OK for this repo to publish **verifiable proof identifiers** (mint / pool / tx signatures) via `web/data.json` and `docs/solscan_links.md`.
@@ -49,23 +54,28 @@ Notes:
 
 ## 2) Verify the pool exists and points to the right mint
 
+The main goal here is to prove that the **canonical pool address you publish** (in `web/data.json` + `docs/solscan_links.md`) actually corresponds to the WORSHIPAI trading pair you intend.
+
 On Solscan:
 
-1. Search for the **pool address** (or open it from the Raydium UI “view on explorer”).
-2. Use these Solscan “breadcrumbs” to validate you are on the correct pool:
-   - **Account page → Overview**: owner/program should look like the expected AMM program.
-   - **Account page → Token Accounts** (or similar): confirm the pool controls token accounts for the expected pair.
-   - **Account page → Transactions**: pool creation / initialization transactions should be near launch time.
-3. Confirm the pool’s token pair includes:
-   - the correct mint
-   - the correct quote asset (e.g., SOL / USDC), as per your launch plan
-4. Confirm the pool creation timestamp aligns with launch.
+1. Open the **pool address** (or open it from Raydium’s “view on explorer” link).
+2. Use these Solscan “breadcrumbs” to validate you are looking at a pool **account**:
+   - **Account page → Overview**: should show an **Owner / Program** (some Raydium/AMM program).
+   - **Account page → Token Accounts** (or similar): the pool should control token accounts for the pair.
+   - **Account page → Transactions**: initialization activity should be near launch time.
+3. Confirm the pair is correct by checking the pool’s token accounts include:
+   - the WORSHIPAI mint (base)
+   - the intended quote asset (e.g., wSOL / USDC), per `docs/launch_parameters.md`
+4. Cross-check via Raydium UI:
+   - Open the WORSHIPAI pair on Raydium.
+   - Find the “AMM ID / Pool ID” shown by Raydium for that pair.
+   - Confirm it exactly matches the **pool address** you publish.
 
 Extra sanity checks:
 
 - A Raydium “pool address” is typically an **account**, not a mint. If you accidentally paste the token mint into this step, the page you land on will look like a *Token* page, not an *Account* page.
-- On the pool **Account** page, look for a clear **Owner / Program** association that matches a Raydium AMM program (exact program depends on Raydium version).
-- If Solscan shows multiple similarly-named pools or multiple addresses from Raydium UI, treat the *pool address you publish* as canonical and keep it consistent across `web/data.json` and `docs/solscan_links.md`.
+- Raydium has multiple pool types/versions; the exact program id may differ. Don’t rely only on “Owner looks familiar” — rely on the **token accounts** and the **Raydium UI AMM ID** matching the published pool address.
+- If you see multiple similarly-named pools, treat the *pool address you publish* as canonical and keep it consistent across `web/data.json` and `docs/solscan_links.md`.
 
 ## 3) Verify liquidity add transaction
 
