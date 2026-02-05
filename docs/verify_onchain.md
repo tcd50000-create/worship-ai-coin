@@ -4,18 +4,28 @@ Quick link bundle: see `docs/solscan_links.md`.
 
 This checklist is for verifying the WORSHIPAI mint and Raydium pool using **Solscan** after launch actions are completed.
 
-> Rule: Keep this doc **address-agnostic**. Paste addresses/txids only into your private launch log, not into this repo.
+> Guardrail: keep this doc **operator-agnostic**.
+> 
+> - It is OK for this repo to publish **verifiable proof identifiers** (mint / pool / tx signatures) via `web/data.json` and `docs/solscan_links.md`.
+> - Do **not** publish **operator wallet addresses**, seed phrases, private keys, API keys, or any other sensitive data.
 
 ## What you should capture during launch
 
-Record these identifiers in a private launch log (local note / password manager note / offline doc):
+Record these identifiers. Split them into **public proofs** vs **private operator details**:
+
+Public proofs (safe to publish in this repo, and should remain consistent across docs + dashboard):
 
 - Mint address
 - Create-mint txid (or the first txid that created the mint)
 - Raydium pool address (or pool id)
 - Add-liquidity txid
 - LP burn txid (if applicable)
-- Any “community pool”/treasury token account address and its funding txid(s)
+
+Private operator details (keep out of this repo):
+
+- Signer/operator wallet addresses
+- Any “community pool”/treasury **wallet** address if it could be used for impersonation/social engineering
+- Anything that could identify or compromise the operator (notes, screenshots, browser data)
 
 ## 1) Verify mint basics
 
