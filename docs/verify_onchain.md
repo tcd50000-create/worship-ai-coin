@@ -61,11 +61,17 @@ On Solscan:
    - the correct quote asset (e.g., SOL / USDC), as per your launch plan
 4. Confirm the pool creation timestamp aligns with launch.
 
+Extra sanity checks:
+
+- A Raydium “pool address” is typically an **account**, not a mint. If you accidentally paste the token mint into this step, the page you land on will look like a *Token* page, not an *Account* page.
+- On the pool **Account** page, look for a clear **Owner / Program** association that matches a Raydium AMM program (exact program depends on Raydium version).
+- If Solscan shows multiple similarly-named pools or multiple addresses from Raydium UI, treat the *pool address you publish* as canonical and keep it consistent across `web/data.json` and `docs/solscan_links.md`.
+
 ## 3) Verify liquidity add transaction
 
 1. Open the **add-liquidity txid** on Solscan.
 2. Confirm:
-   - you recognize the signer wallet (human operator)
+   - the signer(s) match your expected operator wallet(s) (**do not publish wallet addresses in this repo**)
    - token amounts are consistent with the planned initial liquidity
    - there are no unexpected extra instructions (e.g., random program interactions)
 
