@@ -371,6 +371,7 @@ async function load() {
   setTextWithStatus("p_add_liq_tx", onchain.tx?.add_liquidity_tx, { kind: "tx" });
   setTextWithStatus("p_lp_mint", onchain.lp?.lp_mint, { kind: "token" });
   setTextWithStatus("p_burn_addr", onchain.lp?.burn_address, { kind: "address" });
+  setTextWithStatus("p_incinerator", CANONICAL_BURN_ADDR, { kind: "address" });
   setTextWithStatus("p_burn_tx", onchain.lp?.burn_tx, { kind: "tx" });
 
   el("d_liq").textContent = fmtTokens(onchain.distribution?.liquidity_tokens);
