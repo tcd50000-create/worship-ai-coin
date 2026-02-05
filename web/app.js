@@ -167,14 +167,21 @@ async function load() {
 
     addPair("LP mint", onchain.lp?.lp_mint, isMissing(onchain.lp?.lp_mint) ? null : solscan.token(onchain.lp.lp_mint));
 
+    const CANONICAL_BURN_ADDR = "1nc1nerator11111111111111111111111111111111";
+
     addPair(
       "LP burn address (incinerator)",
       onchain.lp?.burn_address,
       isMissing(onchain.lp?.burn_address) ? null : solscan.address(onchain.lp.burn_address)
     );
-    if (!isMissing(onchain.lp?.burn_address)) {
-      lines.push(`- Expected burn address: \`1nc1nerator11111111111111111111111111111111\``);
-      lines.push(``);
+
+    const burnAddr = onchain.lp?.burn_address;
+    if (isMissing(burnAddr) || String(burnAddr) !== CANONICAL_BURN_ADDR) {
+      lines.push(`- Expected burn address: \`${CANONICAL_BURN_ADDR}\``);
+      if (!isMissing(burnAddr)) {
+        lines.push(`- Status: **warning** (burn address in data.json does not match canonical incinerator)`);
+      }
+      lines.push("");
     }
 
     addPair("LP burn tx", onchain.lp?.burn_tx, isMissing(onchain.lp?.burn_tx) ? null : solscan.tx(onchain.lp.burn_tx));
@@ -286,7 +293,7 @@ async function load() {
     });
   };
 
-  // Lightweight status badges (presence-based; still verify independently via Solscan links below).
+  // Lightweight status badges (still verify independently via Solscan links below).
   setBadge(
     "b_mint",
     isMissing(onchain.mint_address) ? "missing" : "ok",
@@ -299,13 +306,24 @@ async function load() {
     isMissing(onchain.amm?.pool_address) ? "Pool: missing" : "Pool: set"
   );
 
-  // LP burn is considered present only when we have the canonical burn address + burn tx.
-  const hasLpBurn = !isMissing(onchain.lp?.burn_address) && !isMissing(onchain.lp?.burn_tx);
-  setBadge(
-    "b_lp_burn",
-    hasLpBurn ? "ok" : "missing",
-    hasLpBurn ? "LP burn: set" : "LP burn: missing"
-  );
+  // LP burn badge: we treat "verified" as (burn_tx set) AND burn_address equals the canonical incinerator.
+  const CANONICAL_BURN_ADDR = "1nc1nerator11111111111111111111111111111111";
+  const burnAddr = onchain.lp?.burn_address;
+  const burnTx = onchain.lp?.burn_tx;
+
+  const hasBurnAddr = !isMissing(burnAddr);
+  const hasBurnTx = !isMissing(burnTx);
+  const burnAddrIsCanonical = hasBurnAddr && String(burnAddr) === CANONICAL_BURN_ADDR;
+
+  if (!hasBurnAddr && !hasBurnTx) {
+    setBadge("b_lp_burn", "missing", "LP burn: missing");
+  } else if (hasBurnTx && burnAddrIsCanonical) {
+    setBadge("b_lp_burn", "ok", "LP burn: verified");
+  } else if (hasBurnAddr && !burnAddrIsCanonical) {
+    setBadge("b_lp_burn", "warn", "LP burn: check address");
+  } else {
+    setBadge("b_lp_burn", "warn", "LP burn: incomplete");
+  }
 
   setTextWithStatus("t_name", token.name);
   setTextWithStatus("t_symbol", token.symbol);
