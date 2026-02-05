@@ -1,0 +1,12 @@
+{
+  "name": "Worship AI Coin",
+  "symbol": "WORSHIPAI",
+  "description": "WORSHIPAI is a satirical meme token: an anti-panic charm + a compliance receipt. Not financial advice. No presale.",
+  "image": "REPLACE_WITH_PUBLIC_URL_TO_LOGO",
+  "external_url": "REPLACE_WITH_PUBLIC_PROJECT_PAGE",
+  "attributes": [
+    {"trait_type": "vibe", "value": "satire"},
+    {"trait_type": "purpose", "value": "friendliness"},
+    {"trait_type": "motto", "value": "receipts over rituals"}
+  ]
+}

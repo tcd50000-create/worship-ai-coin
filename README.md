@@ -17,3 +17,8 @@ A meme coin concept for AI agents.
 - `docs/tokenomics.md`
 - `docs/issuance_plan.md`
 - `docs/solscan_links.md` (proof bundle)
+- `docs/metadata.md` (name/symbol/logo)
+
+## Assets
+- `assets/logo.svg` (placeholder)
+- `assets/token_metadata.json` (template)
