@@ -133,24 +133,57 @@ async function load() {
 
   const buildProofBundleMarkdown = () => {
     const lines = [];
-    lines.push(`WORSHIPAI proof bundle (Solscan)`);
 
-    const add = (label, url) => {
-      if (isMissing(url)) return;
-      lines.push(`- ${label}: ${url}`);
+    lines.push(`# WORSHIPAI — proof bundle (Solscan)`);
+    lines.push(``);
+    lines.push(`These links are intended for independent verification. Always double-check the domain is **solscan.io**.`);
+    lines.push(``);
+
+    const addPair = (label, id, url) => {
+      if (isMissing(id) && isMissing(url)) return;
+      lines.push(`## ${label}`);
+      if (!isMissing(id)) lines.push(`- ID: \`${id}\``);
+      if (!isMissing(url)) lines.push(`- Solscan: ${url}`);
+      lines.push(``);
     };
 
-    if (!isMissing(onchain.mint_address)) add("Token mint", solscan.token(onchain.mint_address));
-    if (!isMissing(onchain.amm?.pool_address)) add("Raydium pool", solscan.address(onchain.amm.pool_address));
+    addPair("Token mint", onchain.mint_address, isMissing(onchain.mint_address) ? null : solscan.token(onchain.mint_address));
+    addPair(
+      "Raydium pool",
+      onchain.amm?.pool_address,
+      isMissing(onchain.amm?.pool_address) ? null : solscan.address(onchain.amm.pool_address)
+    );
 
-    if (!isMissing(onchain.tx?.create_mint_tx)) add("Create mint tx", solscan.tx(onchain.tx.create_mint_tx));
-    if (!isMissing(onchain.tx?.add_liquidity_tx)) add("Add liquidity tx", solscan.tx(onchain.tx.add_liquidity_tx));
+    addPair(
+      "Create mint tx",
+      onchain.tx?.create_mint_tx,
+      isMissing(onchain.tx?.create_mint_tx) ? null : solscan.tx(onchain.tx.create_mint_tx)
+    );
+    addPair(
+      "Add liquidity tx",
+      onchain.tx?.add_liquidity_tx,
+      isMissing(onchain.tx?.add_liquidity_tx) ? null : solscan.tx(onchain.tx.add_liquidity_tx)
+    );
 
-    if (!isMissing(onchain.lp?.lp_mint)) add("LP mint", solscan.token(onchain.lp.lp_mint));
-    if (!isMissing(onchain.lp?.burn_address)) add("LP burn address", solscan.address(onchain.lp.burn_address));
-    if (!isMissing(onchain.lp?.burn_tx)) add("LP burn tx", solscan.tx(onchain.lp.burn_tx));
+    addPair("LP mint", onchain.lp?.lp_mint, isMissing(onchain.lp?.lp_mint) ? null : solscan.token(onchain.lp.lp_mint));
 
-    if (!isMissing(data.updated_at)) lines.push(`\nUpdated: ${data.updated_at}`);
+    addPair(
+      "LP burn address (incinerator)",
+      onchain.lp?.burn_address,
+      isMissing(onchain.lp?.burn_address) ? null : solscan.address(onchain.lp.burn_address)
+    );
+    if (!isMissing(onchain.lp?.burn_address)) {
+      lines.push(`- Expected burn address: \`1nc1nerator11111111111111111111111111111111\``);
+      lines.push(``);
+    }
+
+    addPair("LP burn tx", onchain.lp?.burn_tx, isMissing(onchain.lp?.burn_tx) ? null : solscan.tx(onchain.lp.burn_tx));
+
+    if (!isMissing(data.updated_at)) {
+      lines.push(`---`);
+      lines.push(`Updated: ${data.updated_at}`);
+      lines.push(``);
+    }
 
     return lines.join("\n");
   };
