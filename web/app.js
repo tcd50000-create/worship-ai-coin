@@ -211,6 +211,29 @@ async function load() {
     });
   };
 
+  const wireCopyDataJson = () => {
+    const btn = el("copy_data_json");
+    if (!btn) return;
+
+    btn.addEventListener("click", async () => {
+      try {
+        await copyText(JSON.stringify(data, null, 2));
+        btn.textContent = "Copied";
+        btn.classList.add("copied");
+        setTimeout(() => {
+          btn.textContent = "Copy data.json";
+          btn.classList.remove("copied");
+        }, 1200);
+      } catch (err) {
+        console.error(err);
+        btn.textContent = "Failed";
+        setTimeout(() => {
+          btn.textContent = "Copy data.json";
+        }, 1200);
+      }
+    });
+  };
+
   // Lightweight status badges (presence-based; still verify independently via Solscan links below).
   setBadge(
     "b_mint",
@@ -264,6 +287,7 @@ async function load() {
   el("updated").textContent = `Updated: ${fmt(data.updated_at)}`;
 
   wireCopyProofBundle();
+  wireCopyDataJson();
 }
 
 load();
