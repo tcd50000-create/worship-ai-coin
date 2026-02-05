@@ -2,6 +2,21 @@
 
 This page is a quick “proof bundle” for WORSHIPAI.
 
+## Solscan breadcrumbs (how to verify)
+
+If you want to independently verify the launch artifacts on Solscan:
+
+1. Open the **Token mint** link below.
+2. On the token page, confirm **symbol/decimals/total supply** match the dashboard (`web/`) and docs.
+3. Use the **Key transactions** links to review:
+   - **Create mint tx** (should include mint creation + initial minting actions).
+   - **Add liquidity tx** (should include Raydium/AMM instructions and expected amounts).
+4. Open the **Raydium pool** account link and confirm it matches what Raydium shows for the WORSHIPAI pair.
+5. Open the **LP burn tx** and confirm the LP tokens were sent to the Solana incinerator address:
+   - `1nc1nerator11111111111111111111111111111111`
+
+These links are intentionally direct. Always double-check the domain is `solscan.io`.
+
 ## Token mint
 - Mint: `3QUF45EHzx52QqhZGjm9nt61GFpFi1JMBm7RCqfNTfgK`
 - Solscan: https://solscan.io/token/3QUF45EHzx52QqhZGjm9nt61GFpFi1JMBm7RCqfNTfgK
