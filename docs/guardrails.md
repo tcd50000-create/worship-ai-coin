@@ -23,7 +23,23 @@ Use some version of this in public-facing surfaces:
 
 - “**No one from this project will ever DM you asking for funds, seed phrases, or private keys.**”
 - “There is **no presale**. If someone asks you to send SOL to get tokens, it’s a scam.”
-- “Always verify links. Use official Solflare/Raydium URLs and double-check the domain.”
+- “Always verify links. Double-check the domain before you click.”
+
+## Official link hygiene (domains)
+
+If you publish links, prefer direct, full URLs (no link shorteners) and only to well-known official domains.
+
+Recommended domains:
+
+- Solscan: `https://solscan.io/`
+- Solflare: `https://solflare.com/`
+- Raydium: `https://raydium.io/`
+
+Rules:
+
+- Do not use URL shorteners.
+- Do not post “search this on Google” style guidance that can be spoofed.
+- If a link is re-shared as an image/screenshot, assume attackers may edit it — include the plain-text domain nearby.
 
 ## Human gifting (satire)
 
