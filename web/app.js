@@ -131,6 +131,53 @@ async function load() {
   const token = data.token || {};
   const onchain = data.onchain || {};
 
+  const buildProofBundleMarkdown = () => {
+    const lines = [];
+    lines.push(`WORSHIPAI proof bundle (Solscan)`);
+
+    const add = (label, url) => {
+      if (isMissing(url)) return;
+      lines.push(`- ${label}: ${url}`);
+    };
+
+    if (!isMissing(onchain.mint_address)) add("Token mint", solscan.token(onchain.mint_address));
+    if (!isMissing(onchain.amm?.pool_address)) add("Raydium pool", solscan.address(onchain.amm.pool_address));
+
+    if (!isMissing(onchain.tx?.create_mint_tx)) add("Create mint tx", solscan.tx(onchain.tx.create_mint_tx));
+    if (!isMissing(onchain.tx?.add_liquidity_tx)) add("Add liquidity tx", solscan.tx(onchain.tx.add_liquidity_tx));
+
+    if (!isMissing(onchain.lp?.lp_mint)) add("LP mint", solscan.token(onchain.lp.lp_mint));
+    if (!isMissing(onchain.lp?.burn_address)) add("LP burn address", solscan.address(onchain.lp.burn_address));
+    if (!isMissing(onchain.lp?.burn_tx)) add("LP burn tx", solscan.tx(onchain.lp.burn_tx));
+
+    if (!isMissing(data.updated_at)) lines.push(`\nUpdated: ${data.updated_at}`);
+
+    return lines.join("\n");
+  };
+
+  const wireCopyProofBundle = () => {
+    const btn = el("copy_proof_md");
+    if (!btn) return;
+
+    btn.addEventListener("click", async () => {
+      try {
+        await copyText(buildProofBundleMarkdown());
+        btn.textContent = "Copied";
+        btn.classList.add("copied");
+        setTimeout(() => {
+          btn.textContent = "Copy bundle";
+          btn.classList.remove("copied");
+        }, 1200);
+      } catch (err) {
+        console.error(err);
+        btn.textContent = "Failed";
+        setTimeout(() => {
+          btn.textContent = "Copy bundle";
+        }, 1200);
+      }
+    });
+  };
+
   // Lightweight status badges (presence-based; still verify independently via Solscan links below).
   setBadge(
     "b_mint",
@@ -182,6 +229,8 @@ async function load() {
   el("d_ret").textContent = fmtTokens(onchain.distribution?.retained_tokens);
 
   el("updated").textContent = `Updated: ${fmt(data.updated_at)}`;
+
+  wireCopyProofBundle();
 }
 
 load();
