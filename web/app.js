@@ -40,6 +40,15 @@ async function load() {
     tx: (sig) => `https://solscan.io/tx/${sig}`,
   };
 
+  const setBadge = (id, state, text) => {
+    const node = el(id);
+    if (!node) return;
+
+    node.classList.remove("ok", "warn", "missing");
+    if (state) node.classList.add(state);
+    node.textContent = text;
+  };
+
   const setTextWithStatus = (id, value, { kind } = {}) => {
     const node = el(id);
     node.classList.remove("is-missing", "is-ok");
@@ -113,6 +122,27 @@ async function load() {
 
   const token = data.token || {};
   const onchain = data.onchain || {};
+
+  // Lightweight status badges (presence-based; still verify independently via Solscan links below).
+  setBadge(
+    "b_mint",
+    isMissing(onchain.mint_address) ? "missing" : "ok",
+    isMissing(onchain.mint_address) ? "Mint: missing" : "Mint: set"
+  );
+
+  setBadge(
+    "b_pool",
+    isMissing(onchain.amm?.pool_address) ? "missing" : "ok",
+    isMissing(onchain.amm?.pool_address) ? "Pool: missing" : "Pool: set"
+  );
+
+  // LP burn is considered present only when we have the canonical burn address + burn tx.
+  const hasLpBurn = !isMissing(onchain.lp?.burn_address) && !isMissing(onchain.lp?.burn_tx);
+  setBadge(
+    "b_lp_burn",
+    hasLpBurn ? "ok" : "missing",
+    hasLpBurn ? "LP burn: set" : "LP burn: missing"
+  );
 
   setTextWithStatus("t_name", token.name);
   setTextWithStatus("t_symbol", token.symbol);
