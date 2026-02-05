@@ -72,6 +72,15 @@ async function load() {
   setTextWithStatus("lp_burn_addr", onchain.lp?.burn_address, { kind: "address" });
   setTextWithStatus("lp_burn_tx", onchain.lp?.burn_tx, { kind: "tx" });
 
+  // Proof bundle table (mirrors docs/solscan_links.md)
+  setTextWithStatus("p_mint", onchain.mint_address, { kind: "token" });
+  setTextWithStatus("p_pool", onchain.amm?.pool_address, { kind: "address" });
+  setTextWithStatus("p_create_mint_tx", onchain.tx?.create_mint_tx, { kind: "tx" });
+  setTextWithStatus("p_add_liq_tx", onchain.tx?.add_liquidity_tx, { kind: "tx" });
+  setTextWithStatus("p_lp_mint", onchain.lp?.lp_mint, { kind: "token" });
+  setTextWithStatus("p_burn_addr", onchain.lp?.burn_address, { kind: "address" });
+  setTextWithStatus("p_burn_tx", onchain.lp?.burn_tx, { kind: "tx" });
+
   el("d_liq").textContent = fmtTokens(onchain.distribution?.liquidity_tokens);
   el("d_pool").textContent = fmtTokens(onchain.distribution?.community_pool_tokens);
   el("d_ret").textContent = fmtTokens(onchain.distribution?.retained_tokens);
