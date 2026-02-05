@@ -49,6 +49,13 @@ async function load() {
     node.textContent = text;
   };
 
+  const shortId = (v) => {
+    const s = String(v);
+    // Solana addresses/tx sigs are long; show a readable short form.
+    if (s.length <= 14) return s;
+    return `${s.slice(0, 6)}…${s.slice(-6)}`;
+  };
+
   const setTextWithStatus = (id, value, { kind } = {}) => {
     const node = el(id);
     node.classList.remove("is-missing", "is-ok");
@@ -72,7 +79,8 @@ async function load() {
       a.href = href;
       a.target = "_blank";
       a.rel = "noreferrer";
-      a.textContent = v;
+      a.textContent = shortId(v);
+      a.title = v;
 
       const spacer = document.createTextNode(" ");
 
