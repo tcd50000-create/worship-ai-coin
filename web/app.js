@@ -135,19 +135,22 @@ async function load() {
     const lines = [];
 
     lines.push(`# WORSHIPAI — proof bundle (Solscan)`);
-    lines.push(``);
-    lines.push(`These links are intended for independent verification. Always double-check the domain is **solscan.io**.`);
-    lines.push(``);
+    lines.push("");
+    lines.push(
+      `These links are intended for independent verification. Always double-check the domain is **solscan.io**.`
+    );
+    lines.push("");
 
     const addPair = (label, id, url) => {
       if (isMissing(id) && isMissing(url)) return;
       lines.push(`## ${label}`);
       if (!isMissing(id)) lines.push(`- ID: \`${id}\``);
       if (!isMissing(url)) lines.push(`- Solscan: ${url}`);
-      lines.push(``);
+      lines.push("");
     };
 
     addPair("Token mint", onchain.mint_address, isMissing(onchain.mint_address) ? null : solscan.token(onchain.mint_address));
+
     addPair(
       "Raydium pool",
       onchain.amm?.pool_address,
@@ -159,6 +162,7 @@ async function load() {
       onchain.tx?.create_mint_tx,
       isMissing(onchain.tx?.create_mint_tx) ? null : solscan.tx(onchain.tx.create_mint_tx)
     );
+
     addPair(
       "Add liquidity tx",
       onchain.tx?.add_liquidity_tx,
@@ -169,27 +173,43 @@ async function load() {
 
     const CANONICAL_BURN_ADDR = "1nc1nerator11111111111111111111111111111111";
 
+    // Burn address: show the configured value (if set) and also pin the canonical incinerator.
     addPair(
-      "LP burn address (incinerator)",
+      "LP burn address",
       onchain.lp?.burn_address,
       isMissing(onchain.lp?.burn_address) ? null : solscan.address(onchain.lp.burn_address)
     );
 
+    lines.push(`- Canonical incinerator: \`${CANONICAL_BURN_ADDR}\``);
+    lines.push(`- Solscan: ${solscan.address(CANONICAL_BURN_ADDR)}`);
+
     const burnAddr = onchain.lp?.burn_address;
-    if (isMissing(burnAddr) || String(burnAddr) !== CANONICAL_BURN_ADDR) {
-      lines.push(`- Expected burn address: \`${CANONICAL_BURN_ADDR}\``);
-      if (!isMissing(burnAddr)) {
-        lines.push(`- Status: **warning** (burn address in data.json does not match canonical incinerator)`);
-      }
-      lines.push("");
+    if (!isMissing(burnAddr) && String(burnAddr) !== CANONICAL_BURN_ADDR) {
+      lines.push(`- Status: **warning** (burn address in data.json does not match canonical incinerator)`);
     }
+    lines.push("");
 
     addPair("LP burn tx", onchain.lp?.burn_tx, isMissing(onchain.lp?.burn_tx) ? null : solscan.tx(onchain.lp.burn_tx));
+
+    // Optional distribution snapshot (human token units)
+    const dist = onchain.distribution || {};
+    const hasDist =
+      !isMissing(dist.liquidity_tokens) ||
+      !isMissing(dist.community_pool_tokens) ||
+      !isMissing(dist.retained_tokens);
+
+    if (hasDist) {
+      lines.push(`## Distribution snapshot`);
+      if (!isMissing(dist.liquidity_tokens)) lines.push(`- Liquidity: ${dist.liquidity_tokens} WORSHIPAI`);
+      if (!isMissing(dist.community_pool_tokens)) lines.push(`- Community pool: ${dist.community_pool_tokens} WORSHIPAI`);
+      if (!isMissing(dist.retained_tokens)) lines.push(`- Retained: ${dist.retained_tokens} WORSHIPAI`);
+      lines.push("");
+    }
 
     if (!isMissing(data.updated_at)) {
       lines.push(`---`);
       lines.push(`Updated: ${data.updated_at}`);
-      lines.push(``);
+      lines.push("");
     }
 
     return lines.join("\n");
